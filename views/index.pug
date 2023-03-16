@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  - var complete = step >= 5
+  div.container
+    div(class='vh-100 d-flex justify-content-center align-items-center')
+      div(class='w-50 py-5 px-5 rounded bg-warning')
+        h1= "The Number Quiz"
+        p Your current score is #{score}.
+        if !complete 
+          p Guess the next number in the sequence.
+          p #{pattern}
+        else
+          p You have completed the Number Quiz, with a score #{score} out of 5.
+
+        if !complete
+          form(action='/', class='px-8 pt-6 pb-8', method='POST')
+            div(class='form-group row')
+              label(for='answer' class='col-sm-3 col-form-label') Your answer:
+              div.col-sm-9
+                input(type='number' name="answer" class='form-control' id='answer')
+            div(class='form-group row mt-4')
+              div.col-sm-12
+                button(type='submit' class='btn btn-primary') Submit
